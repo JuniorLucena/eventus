@@ -154,3 +154,5 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media'
 
 AUTH_PROFILE_MODULE = 'core.UserProfile'
+
+#TEST_RUNNER = 'django_coverage.coverage_runner.CoverageRunner'

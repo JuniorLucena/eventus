@@ -1,0 +1,10 @@
+[run]
+source = .
+omit = */migrations/*,
+	   *__init__*,
+	   */tests/*,
+       eventus/*,
+       manage.py
+
+[html]
+directory = docs/report
