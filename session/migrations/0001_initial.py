@@ -17,8 +17,8 @@ class Migration(migrations.Migration):
             name='DateTimeSession',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('start_session', models.DateTimeField()),
-                ('end_session', models.DateTimeField()),
+                ('start_session', models.DateTimeField(verbose_name='Start Session')),
+                ('end_session', models.DateTimeField(verbose_name='End Session')),
             ],
             options={
                 'ordering': ['start_session', 'end_session'],
@@ -27,11 +27,27 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
+            name='EntrySession',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name=b'Created At')),
+                ('status', models.SmallIntegerField(verbose_name='Status', choices=[(1, b'entry'), (2, b'wait')])),
+            ],
+            options={
+                'verbose_name': 'Entry Session',
+                'verbose_name_plural': 'Entry Sessions',
+            },
+        ),
+        migrations.CreateModel(
             name='Event',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=50, verbose_name='Name')),
-                ('owner', models.ForeignKey(related_name='event', to=settings.AUTH_USER_MODEL)),
+                ('description', models.TextField(verbose_name='Description')),
+                ('start_date', models.DateTimeField(verbose_name='Start Date')),
+                ('end_date', models.DateTimeField(verbose_name='End Date')),
+                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Created At')),
+                ('owner', models.ForeignKey(related_name='events', to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'verbose_name': 'Event',
@@ -57,6 +73,7 @@ class Migration(migrations.Migration):
                 ('description', models.TextField(verbose_name='Description')),
                 ('preconditions', models.TextField(null=True, verbose_name='Precoditions', blank=True)),
                 ('num_accents', models.PositiveIntegerField(default=0, verbose_name='Num Accents')),
+                ('is_published', models.BooleanField(default=True, verbose_name='Publish')),
                 ('room', models.ForeignKey(related_name='sessions', to='session.Room')),
             ],
             options={
@@ -101,8 +118,22 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(related_name='sessions', to='session.TypeSession'),
         ),
         migrations.AddField(
+            model_name='entrysession',
+            name='session',
+            field=models.ForeignKey(related_name='entry_session', to='session.Session'),
+        ),
+        migrations.AddField(
+            model_name='entrysession',
+            name='user',
+            field=models.ForeignKey(related_name='entry_session', to=settings.AUTH_USER_MODEL),
+        ),
+        migrations.AddField(
             model_name='datetimesession',
             name='session',
             field=models.ForeignKey(related_name='datetime_sessions', to='session.Session'),
+        ),
+        migrations.AlterUniqueTogether(
+            name='entrysession',
+            unique_together=set([('session', 'user')]),
         ),
     ]
