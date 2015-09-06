@@ -12,7 +12,4 @@ deploy:
   app: eventus-master
   on:
     repo: evangilo/eventus
-  run:
-  	- "python eventus/manage.py syncdb --noinput --settings=settings.heroku"
-    - "python eventus/manage.py migrate --all --settings=settings.heroku"
-    - restart
+    
