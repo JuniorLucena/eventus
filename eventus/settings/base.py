@@ -16,7 +16,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 # Quick-start development settings - unsuitable for production
@@ -24,11 +24,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'xs8&15u*2vxltld!kd+@fvbylfu(lxtrk$3*2nhvzk+!=0b32j'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
 
 WSGI_APPLICATION = 'eventus.wsgi.application'
 
@@ -115,16 +110,13 @@ REST_FRAMEWORK = {
     )
 }
 
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
+STATIC_HOST = os.environ.get('DJANGO_STATIC_HOST', '')
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+STATIC_URL = STATIC_HOST + '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+MEDIA_URL = STATIC_HOST + '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -144,15 +136,4 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
-
-STATIC_URL = '/static/'
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = 'media'
-
 AUTH_PROFILE_MODULE = 'core.UserProfile'
-
-#TEST_RUNNER = 'django_coverage.coverage_runner.CoverageRunner'

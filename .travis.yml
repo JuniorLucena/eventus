@@ -5,3 +5,14 @@ install:
   - pip install -r requirements.txt
 script:
   - coverage run manage.py test
+deploy:
+  provider: heroku
+  api_key:
+    secure: T5ybBV2cl5TLqtyE4po/3ShwSQhNp1zdBQJjIqfG5ftcxqsyo4rU2/bFcTa9TSZXL87BVjRZkFE0KJREBlBQl74pc1cKxW2tydC7l3mOZVE4yOSgG8Y/TT0k9Hc7nZ/9mX306jLJg2BlaDTsEfOW9WmPwzRX3XY/y+EZQ1d79DubAzGWZOpt9pruQyK2tdSFOjL3c+j8KToF2iXaIf/+WyoldkYBokQHAuv3nGUwXrJMdXyYTuYkea6A30ELxXjOLP/XJewWRZ6tC8FuosHebDoEPs0/vOITb+O+jwAfWlXQeiSUXa16S4/IRobuEFzt8QjIILoOlkIpbD8zW9XSjRgM3SXaOXnfoN8jZrOfJgcIqMx3TPBfMdZqX40XB3ivmSQRoKUywEJUiEaWJ2Rq5x9B+acuC4/zDN3kHLUV/etUDGEO6rEFThfMRjxsapH3Sw9EGILzEG663/uMP0mLb/sapiXYlSu/gvflyOopBDiheyYtWqgSGZE6XTr20WXaDMqrKaKvKYJC7b5DUAeejjyvOhvjCXQ6Bhbpr/bKAhHCWn0M1djou6Zu9koJdz+mYxcncT9bmWu+qehnx5iUmBwNrNuaLGEMC1dpN3Exv6mOCQw6w0fPmR2wqzf5HHScVIskfpljDRMyMb3hrz59ktNzkm+Gg7uxopUOFundTFE=
+  app: eventus-master
+  on:
+    repo: evangilo/eventus
+  run:
+  	- "python eventus/manage.py syncdb --noinput --settings=settings.heroku"
+    - "python eventus/manage.py migrate --all --settings=settings.heroku"
+    - restart
