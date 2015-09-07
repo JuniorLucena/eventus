@@ -1,15 +1,14 @@
 sudo: false
 language:
-  - python
+- python
 install:
-  - pip install -r requirements.txt
+- pip install -r requirements.txt
 script:
-  - coverage run manage.py test
+- coverage run manage.py test
 deploy:
   provider: heroku
   api_key:
-    secure: T5ybBV2cl5TLqtyE4po/3ShwSQhNp1zdBQJjIqfG5ftcxqsyo4rU2/bFcTa9TSZXL87BVjRZkFE0KJREBlBQl74pc1cKxW2tydC7l3mOZVE4yOSgG8Y/TT0k9Hc7nZ/9mX306jLJg2BlaDTsEfOW9WmPwzRX3XY/y+EZQ1d79DubAzGWZOpt9pruQyK2tdSFOjL3c+j8KToF2iXaIf/+WyoldkYBokQHAuv3nGUwXrJMdXyYTuYkea6A30ELxXjOLP/XJewWRZ6tC8FuosHebDoEPs0/vOITb+O+jwAfWlXQeiSUXa16S4/IRobuEFzt8QjIILoOlkIpbD8zW9XSjRgM3SXaOXnfoN8jZrOfJgcIqMx3TPBfMdZqX40XB3ivmSQRoKUywEJUiEaWJ2Rq5x9B+acuC4/zDN3kHLUV/etUDGEO6rEFThfMRjxsapH3Sw9EGILzEG663/uMP0mLb/sapiXYlSu/gvflyOopBDiheyYtWqgSGZE6XTr20WXaDMqrKaKvKYJC7b5DUAeejjyvOhvjCXQ6Bhbpr/bKAhHCWn0M1djou6Zu9koJdz+mYxcncT9bmWu+qehnx5iUmBwNrNuaLGEMC1dpN3Exv6mOCQw6w0fPmR2wqzf5HHScVIskfpljDRMyMb3hrz59ktNzkm+Gg7uxopUOFundTFE=
+    secure: MHN4ohw6u0Fvqhjotax1ro7WOslQPEIOK2jLvLGULz0A2BRG2HcfuqpyNHBo52otyZ600OkhKobRIjlp8xGqJtANNv0pZBp0jV8xNk4beGCEcs/wogG4DN0lvVZ5O+6ilO6qfaCvHZ9NQOgoEdEz1yjRu4ZHtUnBQ0jrykJ9+fkk/hBoRS3PqSvvUfobtj3yHGBO7qZkA541hyapfzmA3vJKJ45Z/Xh4i0XSV8Mx67K9HIUwXCE9mltOB6gcoxtqKV9sMtEpvCBLG73mnFqThwhrub2321cNvpZOTHf05mSEaNO3/UcXCUG/9bGdm+GakJLVrZ8QZjAXbrnkci/9qxkF034POUhlv7jbMkawGjoToVgyNU58V1N60aDD/ziOuxZDpVhs5Gr4dUr/vbiLGsR2WUr7ZhPFC79+Fq4rhBtPZ3ggZUqjuruY0ZNUuOD8ZyDcUm00QwiNVTAkuDj3eV/gSZg6mkZOB+fM3WKM18FmsmEq/jyv3Hmv3Teas1GP/zCY7vVVUvFhAV/E0AX/B6JzPsc69hg0hio84YcyMJCrUxgTOFwWhtZW1phfocQ1L7DltMnHfyw3NCD16/7uZFvOYTB1BaqyKJhjLggkcS0rG+0zUxYSZBOvz5tObCtsQFzeoWeRkti7c+iSM5fRXsa2Vz74LTlIYRhgZfCY4QA=
   app: eventus-master
   on:
     repo: evangilo/eventus
-    
