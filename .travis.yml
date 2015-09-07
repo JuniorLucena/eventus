@@ -12,3 +12,9 @@ deploy:
   app: eventus-master
   on:
     repo: evangilo/eventus
+    branch: master    
+after_deploy:
+  - python manage.py migrate --noinput --verbosity=0
+  - python manage.py collectstatic --noinput --verbosity=0
+  - python manage.py compilemessages
+  - restart
