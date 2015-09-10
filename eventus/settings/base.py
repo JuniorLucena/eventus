@@ -137,3 +137,5 @@ USE_L10N = True
 USE_TZ = True
 
 AUTH_PROFILE_MODULE = 'core.UserProfile'
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
